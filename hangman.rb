@@ -2,13 +2,30 @@ require 'colorize'
 class Hangman
 
   def initialize
-    @head      = " "
-    @body      = " "
-    @left_arm  = " "
-    @right_arm = " "
-    @left_leg  = " "
-    @right_leg = " "
-    @secret = random_word
+    @head       = " "
+    @body       = " "
+    @left_arm   = " "
+    @right_arm  = " "
+    @left_leg   = " "
+    @right_leg  = " "
+    @secret     = random_word
+    @characters = empty_characters
+  end
+
+  def empty_characters
+    Array.new(@secret.length, "_")
+  end
+
+  def characters
+    @characters
+  end
+
+  def guess
+    @characters.join
+  end
+
+  def board
+    "     ________\n       #{@head}    |\n      #{@left_arm}#{@body}#{@right_arm}   |\n      #{@left_leg} #{@right_leg}   |\n     ________"
   end
 
   def random_word
@@ -19,14 +36,11 @@ class Hangman
     ["blah", "foo"]
   end
 
-  def board
-    "     ________\n       #{@head}    |\n      #{@left_arm}#{@body}#{@right_arm}   |\n      #{@left_leg} #{@right_leg}   |\n     ________"
-  end
-
 end
 
 # Draw and print a board
 # secret word
+# make the concept of blank spaces
 # take a guess and compare to the secret word
 # remember guesses
 # it should know if a guess has already been guessed
@@ -36,4 +50,5 @@ end
 
 h = Hangman.new
 puts h.board
-puts h.inspect
+puts h.guess
+# h.check_letter("l")
