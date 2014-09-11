@@ -12,6 +12,14 @@ class Hangman
     @characters = empty_characters
   end
 
+  def make_guess(guessed_letter)
+    @secret.chars.each_with_index do |letter, index|
+      if guessed_letter == letter
+        @characters[index] = letter
+      end
+    end
+  end
+
   def empty_characters
     Array.new(@secret.length, "_")
   end
@@ -33,7 +41,7 @@ class Hangman
   end
 
   def words
-    ["blah", "foo"]
+    ["blah", "floo"]
   end
 
 end
@@ -41,7 +49,8 @@ end
 # Draw and print a board
 # secret word
 # make the concept of blank spaces
-# take a guess and compare to the secret word
+# take a guess and compare to the secret word, update the characters with
+  # the guessed letter
 # remember guesses
 # it should know if a guess has already been guessed
 # it should when it is complete or hanged
@@ -50,5 +59,5 @@ end
 
 h = Hangman.new
 puts h.board
+h.make_guess("l")
 puts h.guess
-# h.check_letter("l")
