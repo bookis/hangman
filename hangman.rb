@@ -8,6 +8,15 @@ class Hangman
     @right_arm = " "
     @left_leg  = " "
     @right_leg = " "
+    @secret = random_word
+  end
+
+  def random_word
+    words.sample
+  end
+
+  def words
+    ["blah", "foo"]
   end
 
   def board
@@ -27,3 +36,4 @@ end
 
 h = Hangman.new
 puts h.board
+puts h.inspect
